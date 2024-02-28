@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    /* background: #ececec; */
+    background: url(assets/background.gif);
+}
+
+.mainView{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+  margin-top: 100px;
+}
+
+.header{
+  font-size: 60px;
+  font-weight: bold;
+}
+.subheading{
+  font-size: 30px;
+}
+
+
+.StartForFree{
+  font-size: 20px;
+  padding: 8px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 10px;
+  width: auto;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+}
+.StartForFreeNavBar{
+
+  font-size: 16px;
+}
+
+.footerContainer{
+  bottom: 0;
+}
+
+.instructions {
+  font-size: 0.8rem;
+  border-radius: 0.5rem;
+  background: #777575;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+
+/* .instructions > svg {
+  margin-right: 0.25rem;
+} */
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.hide {
+  display: none;
+}
+
+.valid {
+  color: limegreen;
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.title {
+	display: inline-block;
+	width: 100%;
+	font-size: 2rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 2rem;
+	margin-bottom: 1.5rem;
+	color: rgb(77, 74, 74);
+}
+
+
+.contactInformation{
+  color: white;
+  background-color:rgb(181, 181, 192);
+}
