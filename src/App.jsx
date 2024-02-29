@@ -12,34 +12,32 @@ import RequireAuth from "./components/RequireAuth";
 import TaskList from "./pages/TaskList";
 import { ToastContainer } from "react-toastify";
 
-
-
 export default function App() {
-  const [token, setToken] = useLocalStorage(null)
-  // const [token, setToken] = localStorage.setItem("token", null)
+  const [token, setToken] = useLocalStorage("token");
 
   return (
     <>
-      <AuthContext.Provider value={{token, setToken}}>
+      <AuthContext.Provider value={{ token, setToken }}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<RootLayout />}>
               <Route index element={<Home />} />
-              <Route path="register" element={<Register/>}/>
+              <Route path="register" element={<Register />} />
               <Route path="contact" element={<Contact />} />
               <Route path="*" element={<ErrorPage />} />
-              <Route path="login" element={<Login/>}/>
-              <Route path="tasklist"
+              <Route path="login" element={<Login />} />
+              <Route
+                path="tasklist"
                 element={
                   <RequireAuth>
-                    <TaskList/>
+                    <TaskList />
                   </RequireAuth>
                 }
               />
             </Route>
           </Routes>
         </BrowserRouter>
-        <ToastContainer/>
+        <ToastContainer />
       </AuthContext.Provider>
     </>
   );

@@ -3,10 +3,11 @@ import AddToModal from "./AddToDoModal";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFilterStatus } from "../../feature/todo/todoSlice";
+import { motion } from "framer-motion"; // Import motion from Framer Motion
 
 export default function TaskListHeader() {
   const [modalShow, setModalShow] = useState(false);
-  const filterStatus = useSelector((state) => state.todo.filterStatus)
+  const filterStatus = useSelector((state) => state.todo.filterStatus);
   const dispatch = useDispatch();
 
   const buttonStyle = {
@@ -15,23 +16,33 @@ export default function TaskListHeader() {
   };
 
   const handleFilterChange = (e) => {
-    
-    dispatch((updateFilterStatus(e.target.value)))
+    dispatch(updateFilterStatus(e.target.value));
   };
-  
+
   return (
     <Container>
-      <h1 className="title">TODO LIST</h1>
+      <motion.div
+        whileHover={{ scale: 1.2 }}
+        onHoverStart={(e) => {}}
+        onHoverEnd={(e) => {}}
+      >
+        <h1 className="title">TODO LIST</h1>
+      </motion.div>
       <div>
         <Row>
           <Container>
-            <Button style={buttonStyle} onClick={() => setModalShow(true)}>
+            <Button
+              style={buttonStyle}
+              variant="danger"
+              onClick={() => setModalShow(true)}
+            >
               Add Task
             </Button>
             <AddToModal show={modalShow} onHide={() => setModalShow(false)} />
             <Form.Select
               id="status"
-              value={filterStatus} onChange={handleFilterChange}
+              value={filterStatus}
+              onChange={handleFilterChange}
               className="mt-2"
               style={buttonStyle}
             >

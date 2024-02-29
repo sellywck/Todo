@@ -1,6 +1,6 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import GetTimeNow from "../components/GetTimeNow";
-import background from "../assets/background.gif";
+import { motion } from "framer-motion"; // Import motion from Framer Motion
 
 export default function Home() {
   return (
@@ -19,9 +19,15 @@ export default function Home() {
         </Row>
         <Row>
           <Col>
-            <Button className="StartForFree" href="register" variant="danger">
-              Start for Free
-            </Button>
+            <motion.div
+              whileHover={{ scale: 1.2 }}
+              onHoverStart={(e) => {}}
+              onHoverEnd={(e) => {}}
+            >
+              <Button className="StartForFree" href="register" variant="danger">
+                Start for Free
+              </Button>
+            </motion.div>
           </Col>
         </Row>
       </Container>

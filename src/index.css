@@ -2,7 +2,7 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    /* background: #ececec; */
+    background: #f3f0f0f2;
     background: url(assets/background.gif);
 }
 
@@ -37,10 +37,7 @@ body{
   cursor: pointer;
   font-weight: 600;
 }
-.StartForFreeNavBar{
 
-  font-size: 16px;
-}
 
 .footerContainer{
   bottom: 0;
@@ -97,3 +94,14 @@ body{
   color: white;
   background-color:rgb(181, 181, 192);
 }
+
+/* TodoItem.css */
+.todo-item-card {
+  background-color: #FFFFFF; /* White background */
+  border: 1px solid #CCCCCC; /* Light gray border */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding around the card content */
+  margin-bottom: 20px; /* Spacing between cards */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Drop shadow for depth */
+}
+
