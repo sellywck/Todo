@@ -4,8 +4,7 @@ import { Container, Row } from "react-bootstrap";
 
 export default function TaskListContent() {
   const todoList = useSelector((state) => state.todo.todoList);
-  // console.log(todoList)
-
+  
   //Sort todolist based on date
   const sortedTodoList = [...todoList];
   sortedTodoList.sort((a, b) => new Date(b.time) - new Date(a.time));
@@ -14,16 +13,13 @@ export default function TaskListContent() {
 
   //display todolist based on filter status
   const filteredTodoList = sortedTodoList.filter((item) => {
-    if(filterStatus === 'all'){
+    if (filterStatus === "all") {
       return true;
-    } 
-    if(filterStatus ==="completed")
-    {
+    }
+    if (filterStatus === "completed") {
       return item.completed === true;
     }
-    if (filterStatus === 'incomplete')
-    return item.completed === false
-
+    if (filterStatus === "incomplete") return item.completed === false;
   });
 
   return (

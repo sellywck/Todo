@@ -3,7 +3,7 @@ import { deleteTodo } from "../../feature/todo/todoSlice";
 import { useDispatch } from "react-redux";
 import UpdateTodoModal from "./UpdateToDoModal";
 import { useState } from "react";
-import { motion } from "framer-motion"; // Import motion from Framer Motion
+import { motion } from "framer-motion"; // Import motion from Framer Motion.
 
 export default function TodoItem({ todo }) {
   const completed = todo.completed;
@@ -23,21 +23,23 @@ export default function TodoItem({ todo }) {
     <>
       <Col md={4} key={todo.id}>
         <motion.div whileHover={{ scale: 0.9 }} whileTap={{ scale: 0.9 }}>
-          <Card className="my-3 todo-item-card" style={{backgroundColor: '#FFFFFF'}}>
-            <Card.Body>
+          <Card
+            className="my-3"
+            style={{ backgroundColor: "#FFFFFF" }}
+          >
+            <Card.Body className="todoItem">
               <p style={{ fontSize: "13px" }}>{todo.time}</p>
-              <Card.Title >{todo.title}</Card.Title>
-              <Card.Text >{todo.description}</Card.Text>
-              {/* <Button>
-            <i className="bi bi-play"></i>
-          </Button>
-          <Button className="mx-1">
-            <i className="bi bi-pause-fill"></i>
-          </Button>
-          <Button className="mx-1">
-            <i className="bi bi-arrow-clockwise"></i>
-          </Button> */}
-              <Button  onClick={() => handleUpdate()}>
+
+              <p style={{fontSize: '20px'}}>
+                <b>Title:</b> {todo.title}
+              </p>
+              <p style={{fontSize: '20px'}}>
+                <b>Description:</b> {todo.description}
+              </p>
+              <p style={{fontSize: '20px'}}>
+                <b>Due Date:</b> {todo.selectedDate}
+              </p>
+              <Button onClick={() => handleUpdate()}>
                 <i className="bi bi-pencil"></i>
               </Button>
               <Button

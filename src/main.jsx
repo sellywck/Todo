@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 import store from './store.jsx';
+import 'react-datepicker/dist/react-datepicker.css'
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 

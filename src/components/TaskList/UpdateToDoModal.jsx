@@ -3,36 +3,62 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { updateTodo } from "../../feature/todo/todoSlice";
+import DatePicker from "react-datepicker";
 
 export default function UpdateTodoModal({ show, todo, onHide }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
   const dispatch = useDispatch();
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const formatDate = (date) => {
+    return date
+      ? new Date(date).toLocaleString("en-US", {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+          // hour: "2-digit",
+          // minute: "2-digit",
+        })
+      : "";
+  };
 
   useEffect(() => {
     setTitle(todo.title);
     setDescription(todo.description);
     setCompleted(todo.completed);
+    setSelectedDate(todo.selectedDate);
   }, [todo, show]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    //If no changes made
+
+    const formattedSelectedDate = formatDate(selectedDate);
+
     if (
       todo.title !== title ||
       todo.description !== description ||
-      todo.completed !== completed
+      todo.completed !== completed ||
+      todo.selectedDate !== formattedSelectedDate
     ) {
-      dispatch(updateTodo({...todo,title,description,completed}));
+      dispatch(
+        updateTodo({
+          ...todo,
+          title: title,
+          description: description,
+          completed: completed,
+          selectedDate: formattedSelectedDate,
+        })
+      );
     } else {
       toast.error("No Changes Made", {
         autoClose: 1000,
-        position: "bottom-right",})
+        position: "bottom-right",
+      });
       return;
     }
-    onHide()
+    onHide();
   };
 
   return (
@@ -72,6 +98,33 @@ export default function UpdateTodoModal({ show, todo, onHide }) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="description">
+            <Form.Label>Due date</Form.Label> <br />
+            <DatePicker
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              placeholderText={"dd/mm/yyyy"}
+              filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
+              showYearDropdown // year show and scrolldown alos
+              scrollableYearDropdown
+              className="form-control" // Apply Bootstrap
+              dateFormat="dd/MM/yyyy" // Date and time format
+            />
+            {/* <DatePicker
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              placeholderText={"dd/mm/yyyy HH:mm"} // Placeholder with date and time format
+              filterDate={(date) =>
+                date.getDay() !== 6 && date.getDay() !== 0
+              } // weekends cancel
+              showYearDropdown // year show and scrolldown alos
+              scrollableYearDropdown
+              className="form-control" // Apply Bootstrap form-control class
+              dateFormat="dd/MM/yyyy HH:mm" // Date and time format
+              showTimeSelect // Show time selector
+              timeFormat="HH:mm" // Time format
+            /> */}
           </Form.Group>
           <Form.Check
             type="checkbox"

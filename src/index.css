@@ -105,3 +105,25 @@ body{
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Drop shadow for depth */
 }
 
+.nav-link {
+  text-decoration: none;
+  position: relative; /* Required for positioning the custom underline */
+}
+
+
+
+.nav-link:hover::after {
+  border-color: red; /* Change the color on hover */
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0; /* Position the underline at the bottom */
+  left: 50%; /* Position the underline at the center horizontally */
+  transform: translateX(-50%); /* Adjust to center the underline */
+  width: 80%; /* Set the width to a percentage of the text width */
+  border-bottom: 3px solid transparent; /* Initial transparent line */
+  transition: border-color 0.3s ease; /* Smooth transition for the underline */
+}
+
