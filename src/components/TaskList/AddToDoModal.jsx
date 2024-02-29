@@ -34,7 +34,14 @@ export default function AddToModal({ show, onHide }) {
           title,
           description,
           completed,
-          time: new Date().toLocaleString(),
+          // time: new Date().toLocaleString(),
+          time:  new Date().toLocaleString("en-US", {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
           selectedDate: formatDate(selectedDate),
         })
       );
@@ -91,9 +98,8 @@ export default function AddToModal({ show, onHide }) {
             <DatePicker
               selected={selectedDate}
               onChange={(date) => setSelectedDate(date)}
-              //placeholderText={"dd/mm/yyyy HH:mm"}
-              //filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
-              showYearDropdown // year show and scrolldown alos
+              placeholderText={"yyyy-MM-dd hh:mm:ss"}
+              showYearDropdown
               scrollableYearDropdown
               className="form-control"
               dateFormat="y-MM-dd h:mm:ss a"
