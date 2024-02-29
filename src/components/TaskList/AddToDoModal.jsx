@@ -19,8 +19,8 @@ export default function AddToModal({ show, onHide }) {
           month: "short",
           day: "2-digit",
           year: "numeric",
-          // hour: "2-digit",
-          // minute: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
         })
       : "";
   };
@@ -35,17 +35,17 @@ export default function AddToModal({ show, onHide }) {
           description,
           completed,
           time: new Date().toLocaleString(),
-          selectedDate : formatDate(selectedDate)
+          selectedDate: formatDate(selectedDate),
         })
-        );
-        setTitle("");
-        setDescription("");
-        setSelectedDate("")
-        onHide();
-        toast.success("Task added successfully", {
-          autoClose: 1000,
-          position: "bottom-right",
-        });
+      );
+      setTitle("");
+      setDescription("");
+      setSelectedDate("");
+      onHide();
+      toast.success("Task added successfully", {
+        autoClose: 1000,
+        position: "bottom-right",
+      });
     }
   };
 
@@ -84,35 +84,21 @@ export default function AddToModal({ show, onHide }) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-          </Form.Group >
+          </Form.Group>
 
           <Form.Group className="mb-3" controlId="description">
-            <Form.Label>Due date</Form.Label> <br/>
-            {/* <DatePicker
+            <Form.Label>Due date</Form.Label> <br />
+            <DatePicker
               selected={selectedDate}
               onChange={(date) => setSelectedDate(date)}
-              placeholderText={"dd/mm/yyyy HH:mm"} // Placeholder with date and time format
-              filterDate={(date) =>
-                date.getDay() !== 6 && date.getDay() !== 0
-              } // weekends cancel
+              //placeholderText={"dd/mm/yyyy HH:mm"}
+              //filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
               showYearDropdown // year show and scrolldown alos
               scrollableYearDropdown
-              className="form-control" // Apply Bootstrap form-control class
-              dateFormat="dd/MM/yyyy HH:mm" // Date and time format
-              showTimeSelect // Show time selector
-              timeFormat="HH:mm" // Time format
-            /> */}
-              <DatePicker
-              selected={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              placeholderText={"dd/mm/yyyy"} // Placeholder with date and time format
-              filterDate={(date) =>
-                date.getDay() !== 6 && date.getDay() !== 0
-              } // weekends cancel
-              showYearDropdown // year show and scrolldown alos
-              scrollableYearDropdown
-              className="form-control" // Apply Bootstrap form-control class
-              dateFormat="dd/MM/yyyy" // Date and time format
+              className="form-control"
+              dateFormat="y-MM-dd h:mm:ss a"
+              showTimeSelect
+              timeFormat="HH:mm"
             />
           </Form.Group>
           <Form.Check

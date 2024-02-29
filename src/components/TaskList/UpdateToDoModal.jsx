@@ -18,8 +18,8 @@ export default function UpdateTodoModal({ show, todo, onHide }) {
           month: "short",
           day: "2-digit",
           year: "numeric",
-          // hour: "2-digit",
-          // minute: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
         })
       : "";
   };
@@ -28,7 +28,9 @@ export default function UpdateTodoModal({ show, todo, onHide }) {
     setTitle(todo.title);
     setDescription(todo.description);
     setCompleted(todo.completed);
-    setSelectedDate(todo.selectedDate);
+    // todo.selectedDate is a string and must be converted into date format first
+    // REF: https://stackoverflow.com/questions/70235515/typeerror-date-getfullyear-is-not-a-function-on-reactjs
+    setSelectedDate(new Date(todo.selectedDate));
   }, [todo, show]);
 
   const handleSubmit = (e) => {
@@ -104,27 +106,15 @@ export default function UpdateTodoModal({ show, todo, onHide }) {
             <DatePicker
               selected={selectedDate}
               onChange={(date) => setSelectedDate(date)}
-              placeholderText={"dd/mm/yyyy"}
-              filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
+              //placeholderText={"dd/mm/yyyy HH:mm"}
+              //filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 0} // weekends cancel
               showYearDropdown // year show and scrolldown alos
               scrollableYearDropdown
-              className="form-control" // Apply Bootstrap
-              dateFormat="dd/MM/yyyy" // Date and time format
+              className="form-control"
+              dateFormat="y-MM-dd h:mm:ss a"
+              showTimeSelect
+              timeFormat="HH:mm"
             />
-            {/* <DatePicker
-              selected={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              placeholderText={"dd/mm/yyyy HH:mm"} // Placeholder with date and time format
-              filterDate={(date) =>
-                date.getDay() !== 6 && date.getDay() !== 0
-              } // weekends cancel
-              showYearDropdown // year show and scrolldown alos
-              scrollableYearDropdown
-              className="form-control" // Apply Bootstrap form-control class
-              dateFormat="dd/MM/yyyy HH:mm" // Date and time format
-              showTimeSelect // Show time selector
-              timeFormat="HH:mm" // Time format
-            /> */}
           </Form.Group>
           <Form.Check
             type="checkbox"
